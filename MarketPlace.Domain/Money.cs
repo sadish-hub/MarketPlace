@@ -7,7 +7,7 @@ namespace MarketPlace.Domain {
         public static Money FromString (string amount, string currency, ICurrencyLookup currencyLookup) => new Money (decimal.Parse (amount), currency, currencyLookup);
         public decimal Amount { get; }
         public CurrencyDetails Currency { get; }
-        public Money (decimal amount, string currencyCode, ICurrencyLookup currencyLookup) {
+        protected Money (decimal amount, string currencyCode, ICurrencyLookup currencyLookup) {
             if (string.IsNullOrEmpty (currencyCode)) {
                 throw new ArgumentException ("Currency code must be specified", nameof (currencyCode));
             }
@@ -21,7 +21,7 @@ namespace MarketPlace.Domain {
             Amount = amount;
             Currency = currency;
         }
-        private Money (decimal amount, CurrencyDetails currency) {
+        protected Money (decimal amount, CurrencyDetails currency) {
             Amount = amount;
             Currency = currency;
         }
